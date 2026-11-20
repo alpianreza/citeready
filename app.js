@@ -1,8 +1,131 @@
 /**
- * 3-in-1 Client-Side Browser GEO Toolkit (HTML Scanner, robots.txt AI Bot Checker, llms.txt Spec Validator)
- * + Centralized Gumroad/Polar Checkout Link Router.
+ * CiteReady Frontend Controller:
+ * - Hero interactive Before/After telemetry diff console + copy command
+ * - Bento card cursor-tracking radial spotlight
+ * - Interactive pricing persona recommender
+ * - 3-in-1 Client-Side Browser GEO Toolkit (HTML Scanner, robots.txt AI Bot Matrix, llms.txt Spec Validator)
+ * - Centralized Gumroad / Polar checkout router
  */
 (function () {
+  // =========================================================================
+  // 0. Hero Before/After Interactive Telemetry Console + Copy CLI
+  // =========================================================================
+  const btnBefore = document.getElementById('hero-toggle-before');
+  const btnAfter = document.getElementById('hero-toggle-after');
+  const heroRing = document.getElementById('hero-ring');
+  const heroNum = document.getElementById('hero-score-num');
+  const heroGrade = document.getElementById('hero-score-grade');
+  const heroTitle = document.getElementById('hero-console-title');
+  const heroSub = document.getElementById('hero-console-sub');
+  const heroPills = document.getElementById('hero-console-pills');
+  const heroLog = document.getElementById('hero-console-log');
+
+  const CIRC = 2 * Math.PI * 36; // 226.19
+
+  function setHeroState(mode) {
+    const isAfter = mode === 'after';
+    if (btnBefore) {
+      btnBefore.className = isAfter ? 'diff-btn' : 'diff-btn active-before';
+    }
+    if (btnAfter) {
+      btnAfter.className = isAfter ? 'diff-btn active-after' : 'diff-btn';
+    }
+
+    const score = isAfter ? 100 : 29;
+    const color = isAfter ? '#10b981' : '#f43f5e';
+    if (heroRing) {
+      heroRing.style.stroke = color;
+      heroRing.style.strokeDashoffset = (CIRC * (1 - score / 100)).toFixed(2);
+    }
+    if (heroNum) {
+      heroNum.textContent = String(score);
+      heroNum.style.color = isAfter ? '#34d399' : '#fda4af';
+    }
+    if (heroGrade) heroGrade.textContent = isAfter ? 'Grade A' : 'Grade F';
+    if (heroTitle) heroTitle.textContent = isAfter ? 'citeready.eiran.tech (self-audit)' : 'invoicespark-demo.example.com';
+    if (heroSub) {
+      heroSub.textContent = isAfter
+        ? 'After applying the 6 generated CiteReady fix files'
+        : 'Fresh SaaS launch fixture before CiteReady fix pack';
+    }
+    if (heroPills) {
+      heroPills.innerHTML = isAfter
+        ? '<span class="tag-pass">0 CRITICAL</span><span class="tag-pass">0 WARNINGS</span><span class="tag-pass">36/36 PASSED</span>'
+        : '<span class="tag-fail">5 CRITICAL</span><span class="tag-warn">22 WARNINGS</span><span class="tag-pass">9 PASSED</span>';
+    }
+
+    const bars = isAfter
+      ? [
+          ['bar-geo', 'val-geo', '100%', '#10b981', '30/30'],
+          ['bar-crawl', 'val-crawl', '100%', '#10b981', '20/20'],
+          ['bar-schema', 'val-schema', '100%', '#10b981', '15/15'],
+          ['bar-seo', 'val-seo', '100%', '#10b981', '25/25'],
+        ]
+      : [
+          ['bar-geo', 'val-geo', '13%', '#f43f5e', '4/30'],
+          ['bar-crawl', 'val-crawl', '55%', '#f59e0b', '11/20'],
+          ['bar-schema', 'val-schema', '0%', '#f43f5e', '0/15'],
+          ['bar-seo', 'val-seo', '40%', '#f59e0b', '10/25'],
+        ];
+
+    for (const [barId, valId, w, bg, txt] of bars) {
+      const b = document.getElementById(barId);
+      const v = document.getElementById(valId);
+      if (b) { b.style.width = w; b.style.background = bg; }
+      if (v) v.textContent = txt;
+    }
+
+    if (heroLog) {
+      heroLog.innerHTML = isAfter
+        ? `<div class="log-ok">+ llms.txt &amp; llms-full.txt validated (llmstxt.org spec)</div>
+           <div class="log-ok">+ OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot ALLOWED</div>
+           <div class="log-ok">+ Organization, WebSite, SoftwareApplication &amp; FAQPage JSON-LD valid</div>
+           <div class="log-dim">CI Gate Passed (--min-score 95) &middot; Exit Code 0</div>`
+        : `<div class="log-crit">[CRITICAL] /llms.txt missing (HTTP 404)</div>
+           <div class="log-crit">[CRITICAL] OAI-SearchBot &amp; PerplexityBot BLOCKED in robots.txt</div>
+           <div class="log-crit">[CRITICAL] No Organization / Product / FAQPage JSON-LD</div>
+           <div class="log-dim">Toggle "After Fixes (100/100)" above to view post-fix output &rarr;</div>`;
+    }
+  }
+
+  btnBefore?.addEventListener('click', () => setHeroState('before'));
+  btnAfter?.addEventListener('click', () => setHeroState('after'));
+
+  const btnHeroCopy = document.getElementById('btn-copy-hero-cmd');
+  btnHeroCopy?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('node bin/citeready.mjs https://yourapp.com --fix --min-score 85');
+      btnHeroCopy.textContent = 'Copied!';
+      setTimeout(() => { btnHeroCopy.textContent = 'Copy'; }, 1400);
+    } catch {
+      btnHeroCopy.textContent = 'Copied';
+    }
+  });
+
+  // Bento cursor spotlight
+  document.querySelectorAll('.bento-card').forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+    });
+  });
+
+  // Interactive pricing persona highlighter
+  document.querySelectorAll('.persona-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-persona');
+      document.querySelectorAll('.persona-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('[data-tier-card]').forEach((card) => {
+        card.classList.toggle('persona-highlight', card.getAttribute('data-tier-card') === target);
+      });
+    });
+  });
+
+  // =========================================================================
+  // Samples & AI Bot Definitions for 3-in-1 Workbench
+  // =========================================================================
   const SAMPLE_BROKEN = `<!doctype html>
 <html>
 <head>
@@ -59,7 +182,7 @@
   const SAMPLE_ROBOTS_BLOCKED = `User-agent: *
 Allow: /
 
-# Legacy anti-scraper block that accidentally hides you from ChatGPT & Perplexity
+# Legacy anti-scraper block that hides you from ChatGPT & Perplexity
 User-agent: OAI-SearchBot
 Disallow: /
 
@@ -207,7 +330,7 @@ InvoiceSpark runs locally and exports clean CSVs for year-end taxes.
     const score = items.reduce((acc, item) => acc + (item.ok ? item.pts : 0), 0);
     if (scoreEl) {
       scoreEl.textContent = `${score}/100`;
-      scoreEl.style.color = score >= 85 ? '#059669' : score >= 55 ? '#b45309' : '#b91c1c';
+      scoreEl.style.color = score >= 85 ? '#34d399' : score >= 55 ? '#fcd34d' : '#fda4af';
     }
 
     if (checksEl) {
@@ -295,24 +418,27 @@ InvoiceSpark runs locally and exports clean CSVs for year-end taxes.
     const raw = (robotsInput?.value || '').split(/\r?\n/);
     const groups = [];
     let current = null;
-    let lastWasRule = false;
     let hasSitemap = false;
 
     for (const line of raw) {
       const clean = line.replace(/#.*$/, '').trim();
-      if (!clean) { lastWasRule = false; continue; }
+      if (!clean) {
+        if (current && current.rules.length > 0) current = null;
+        continue;
+      }
       const idx = clean.indexOf(':');
       if (idx === -1) continue;
       const key = clean.slice(0, idx).trim().toLowerCase();
       const val = clean.slice(idx + 1).trim();
       if (key === 'sitemap' && val) { hasSitemap = true; continue; }
       if (key === 'user-agent') {
-        if (!current || lastWasRule) { current = { agents: [], rules: [] }; groups.push(current); }
+        if (!current || current.rules.length > 0) {
+          current = { agents: [], rules: [] };
+          groups.push(current);
+        }
         if (val) current.agents.push(val.toLowerCase());
-        lastWasRule = false;
       } else if ((key === 'allow' || key === 'disallow') && current) {
         current.rules.push({ type: key, path: val });
-        lastWasRule = true;
       }
     }
 
@@ -357,10 +483,10 @@ InvoiceSpark runs locally and exports clean CSVs for year-end taxes.
     if (robotsSummary) {
       if (blockedSearch > 0) {
         robotsSummary.textContent = `${blockedSearch}/4 AI Search Bots BLOCKED`;
-        robotsSummary.style.color = '#b91c1c';
+        robotsSummary.style.color = '#fda4af';
       } else {
-        robotsSummary.textContent = `All 4 AI Search Bots Allowed`;
-        robotsSummary.style.color = '#059669';
+        robotsSummary.textContent = 'All 4 AI Search Bots Allowed';
+        robotsSummary.style.color = '#34d399';
       }
     }
   }
@@ -434,7 +560,7 @@ InvoiceSpark runs locally and exports clean CSVs for year-end taxes.
 
     if (llmsScoreEl) {
       llmsScoreEl.textContent = `${score}/100`;
-      llmsScoreEl.style.color = valid ? '#059669' : '#b91c1c';
+      llmsScoreEl.style.color = valid ? '#34d399' : '#fda4af';
     }
     if (llmsBadgeEl) {
       llmsBadgeEl.textContent = valid ? 'SPEC VALID' : 'SPEC INVALID';
@@ -495,10 +621,11 @@ InvoiceSpark runs locally and exports clean CSVs for year-end taxes.
     });
   }
 
-  // Initialize all 3 tools with realistic samples on load
+  // Initialize defaults
   if (htmlInput && !htmlInput.value.trim()) htmlInput.value = SAMPLE_BROKEN;
   if (robotsInput && !robotsInput.value.trim()) robotsInput.value = SAMPLE_ROBOTS_BLOCKED;
   if (llmsInput && !llmsInput.value.trim()) llmsInput.value = SAMPLE_LLMS_INVALID;
+  setHeroState('before');
   runBrowserScan();
   evalRobotsBrowser();
   evalLlmsBrowser();
