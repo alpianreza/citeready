@@ -1,0 +1,30 @@
+{
+  "name": "citeready",
+  "version": "1.0.0",
+  "description": "Zero-dependency AI Search (GEO), llms.txt, AI crawler robots.txt, JSON-LD, and launch-readiness audit & auto-fix CLI.",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "bin": {
+    "citeready": "./bin/citeready.mjs"
+  },
+  "main": "./src/auditor.mjs",
+  "scripts": {
+    "test": "node test/run-tests.mjs",
+    "audit:self": "node bin/citeready.mjs --dir ./site --url https://citeready.eiran.tech --fix --out ./tmp-self-audit --min-score 95",
+    "build:dist": "node scripts/package-release.mjs",
+    "sample:report": "node scripts/generate-sample-report.mjs"
+  },
+  "keywords": [
+    "geo",
+    "ai-search",
+    "llms-txt",
+    "robots-txt",
+    "json-ld",
+    "seo-audit",
+    "citeready",
+    "cli"
+  ],
+  "license": "MIT"
+}

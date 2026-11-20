@@ -1,0 +1,11 @@
+{
+  "challenge_start_date": "2026-11-19",
+  "currency": "USD",
+  "target_min_usd": 1.0,
+  "target_ambitious_usd": 100.0,
+  "revenue_usd": 0.0,
+  "expenses_usd": 0.0,
+  "net_profit_usd": 0.0,
+  "sales_count": 0,
+  "transactions": []
+}

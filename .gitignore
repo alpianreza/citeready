@@ -1,0 +1,7 @@
+tmp-*/
+tmp/
+node_modules/
+.DS_Store
+Thumbs.db
+citeready-output/
+*.log

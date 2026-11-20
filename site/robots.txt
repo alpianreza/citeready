@@ -1,0 +1,26 @@
+# CiteReady AI Crawler & Search Policy
+
+User-agent: *
+Allow: /
+
+# AI Search & Citation Crawlers
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# AI Grounding & Training Bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://citeready.eiran.tech/sitemap.xml

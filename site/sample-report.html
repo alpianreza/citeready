@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CiteReady Audit Report — https://invoicespark-demo.example.com</title>
+  <style>
+    :root {
+      --bg: #05080f;
+      --surface: #0d1424;
+      --surface-alt: #080d18;
+      --ink: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.18);
+      --accent: #10b981;
+      --accent-bright: #34d399;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 70% 40% at 50% -10%, rgba(16, 185, 129, 0.14), transparent 70%),
+        linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    code, pre { font-family: var(--mono); }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 64px; }
+    .demo-banner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: #d1fae5;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .back-link {
+      color: #34d399;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .header {
+      background: linear-gradient(180deg, rgba(19, 28, 49, 0.85) 0%, rgba(9, 14, 26, 0.96) 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+    .brand-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 8px;
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; line-height: 1.15; letter-spacing: -0.02em; }
+    .meta-line { color: var(--muted); font-size: 13.5px; margin: 0; }
+    .summary-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .stat-chip {
+      font-family: var(--mono);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+    }
+    .score-ring-box { text-align: center; }
+    .score-ring-wrap { position: relative; width: 136px; height: 136px; }
+    .score-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .score-num { font-size: 36px; font-weight: 800; line-height: 1; }
+    .score-sub { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-top: 4px; font-weight: 600; }
+    .section {
+      margin-top: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+    }
+    .section h2 { margin: 0 0 18px; font-size: 18px; letter-spacing: -0.01em; }
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 14px;
+    }
+    .pillar-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      background: var(--surface-alt);
+    }
+    .pillar-top { display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+    .pillar-pts { font-family: var(--mono); color: var(--muted); font-size: 12.5px; }
+    .bar-track { height: 8px; background: rgba(148, 163, 184, 0.16); border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 999px; }
+    .pillar-sub { font-size: 12px; color: var(--muted); margin-top: 8px; font-family: var(--mono); }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--border); }
+    th { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    .pill {
+      display: inline-block;
+      font-family: var(--mono);
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 700;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .pill-pass { background: rgba(16, 185, 129, 0.14); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+    .pill-warn { background: rgba(245, 158, 11, 0.14); color: #fcd34d; border: 1px solid rgba(251, 191, 36, 0.3); }
+    .pill-crit { background: rgba(244, 63, 94, 0.15); color: #fda4af; border: 1px solid rgba(251, 113, 133, 0.32); }
+    .check-item { padding: 15px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .pts-tag { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted); white-space: nowrap; }
+    .check-detail { margin: 6px 0 0; font-size: 13.5px; color: var(--muted); }
+    .check-fix {
+      margin: 8px 0 0;
+      font-size: 13px;
+      color: #d1fae5;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    .tab-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--muted);
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .tab-btn.active { background: rgba(16, 185, 129, 0.16); color: var(--accent-bright); border-color: rgba(52, 211, 153, 0.35); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .panel-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #04070d;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      color: #cbd5e1;
+      padding: 9px 14px;
+      border-radius: 10px 10px 0 0;
+      font-size: 12.5px;
+    }
+    .copy-btn {
+      background: rgba(148, 163, 184, 0.12);
+      color: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      cursor: pointer;
+    }
+    pre {
+      margin: 0;
+      background: #02050a;
+      color: #a7f3d0;
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 0 0 10px 10px;
+      overflow-x: auto;
+      font-size: 12.5px;
+      line-height: 1.55;
+      max-height: 440px;
+    }
+    .actions-top { display: flex; gap: 10px; margin-top: 16px; }
+    .print-btn {
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+      color: #03150e;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    footer { margin-top: 30px; text-align: center; font-size: 13px; color: var(--muted); }
+
+    @media print {
+      :root {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --surface-alt: #f8fafc;
+        --ink: #0f172a;
+        --muted: #475569;
+        --border: #cbd5e1;
+      }
+      body { background: #fff !important; color: #0f172a !important; }
+      .header, .section { background: #fff !important; box-shadow: none !important; }
+      .print-btn, .copy-btn, .tab-bar, .back-link { display: none !important; }
+      .tab-panel { display: block !important; margin-bottom: 16px; }
+      .check-fix { background: #f1f5f9 !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
+      pre { background: #f8fafc !important; color: #0f172a !important; max-height: none !important; }
+      .pill-pass { background: #ecfdf5 !important; color: #065f46 !important; }
+      .pill-warn { background: #fffbeb !important; color: #92400e !important; }
+      .pill-crit { background: #fef2f2 !important; color: #991b1b !important; }
+      .section, .header { break-inside: avoid; }
+    }
+    @media (max-width: 700px) {
+      .header { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="demo-banner"><span>SAMPLE DEMO REPORT: Generated by CiteReady v1.0.0 against a synthetic &quot;InvoiceSpark&quot; broken SaaS fixture to illustrate exact report structure and auto-generated fix files.</span><a class="back-link" href="/">&larr; Back to CiteReady</a></div>
+    <header class="header">
+      <div>
+        <span class="brand-tag">CiteReady &mdash; AI Search &amp; Launch Readiness Report</span>
+        <h1>https://invoicespark-demo.example.com</h1>
+        <p class="meta-line">
+          Target: <code>https://invoicespark-demo.example.com/</code> &middot;
+          Mode: sample-demo &middot;
+          Pages Crawled: 1 &middot;
+          Audited: 2026-11-20T03:37:24.931Z
+        </p>
+        <div class="summary-badges">
+          <span class="stat-chip" style="color:#fda4af;">5 Critical</span>
+          <span class="stat-chip" style="color:#fcd34d;">22 Warnings</span>
+          <span class="stat-chip" style="color:#34d399;">9 Passed</span>
+        </div>
+        <div class="actions-top">
+          <button type="button" class="print-btn" onclick="window.print()">Save / Print as PDF</button>
+        </div>
+      </div>
+      <div class="score-ring-box">
+        <div class="score-ring-wrap">
+          <svg width="136" height="136" viewBox="0 0 136 136" aria-hidden="true">
+            <circle cx="68" cy="68" r="54" fill="none" stroke="rgba(148,163,184,0.18)" stroke-width="12"/>
+            <circle cx="68" cy="68" r="54" fill="none" stroke="#f43f5e" stroke-width="12"
+              stroke-linecap="round"
+              stroke-dasharray="339.29"
+              stroke-dashoffset="240.90"
+              transform="rotate(-90 68 68)"/>
+          </svg>
+          <div class="score-center">
+            <span class="score-num" style="color:#f43f5e;">29</span>
+            <span class="score-sub">Grade F / 100</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>Pillar Breakdown</h2>
+      <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-top">
+          <span class="pillar-name">AI Search &amp; GEO</span>
+          <span class="pillar-pts">4 / 30 pts</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:13%;background:#f43f5e;"></div></div>
+        <div class="pillar-sub">1 of 7 checks passed (13%)</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-top">
+          <span class="pillar-name">AI Crawler Policy</span>
+          <span class="pillar-pts">11 / 20 pts</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:55%;background:#f43f5e;"></div></div>
+        <div class="pillar-sub">4 of 8 checks passed (55%)</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-top">
+          <span class="pillar-name">Structured Data (JSON-LD)</span>
+          <span class="pillar-pts">0 / 15 pts</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:0%;background:#f43f5e;"></div></div>
+        <div class="pillar-sub">0 of 6 checks passed (0%)</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-top">
+          <span class="pillar-name">Technical SEO</span>
+          <span class="pillar-pts">8 / 15 pts</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:53%;background:#f43f5e;"></div></div>
+        <div class="pillar-sub">3 of 7 checks passed (53%)</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-top">
+          <span class="pillar-name">Social &amp; Open Graph</span>
+          <span class="pillar-pts">2 / 10 pts</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:20%;background:#f43f5e;"></div></div>
+        <div class="pillar-sub">0 of 4 checks passed (20%)</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-top">
+          <span class="pillar-name">Quality &amp; Signals</span>
+          <span class="pillar-pts">4 / 10 pts</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%;background:#f43f5e;"></div></div>
+        <div class="pillar-sub">1 of 4 checks passed (40%)</div>
+      </div></div>
+    </section>
+
+    <section class="section">
+      <h2>AI Crawler &amp; Citation Access Matrix (robots.txt)</h2>
+      <table>
+        <thead>
+          <tr><th>Bot</th><th>Owner</th><th>Purpose</th><th>Engine</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+      <tr>
+        <td><code>OAI-SearchBot</code></td>
+        <td>OpenAI</td>
+        <td>AI Search / Citations</td>
+        <td>ChatGPT Search / Citations</td>
+        <td><span class="pill pill-crit">BLOCKED</span></td>
+      </tr>
+      <tr>
+        <td><code>ChatGPT-User</code></td>
+        <td>OpenAI</td>
+        <td>AI Search / Citations</td>
+        <td>ChatGPT Live Retrieval</td>
+        <td><span class="pill pill-pass">Allowed (Default)</span></td>
+      </tr>
+      <tr>
+        <td><code>PerplexityBot</code></td>
+        <td>Perplexity</td>
+        <td>AI Search / Citations</td>
+        <td>Perplexity Citations</td>
+        <td><span class="pill pill-crit">BLOCKED</span></td>
+      </tr>
+      <tr>
+        <td><code>ClaudeBot</code></td>
+        <td>Anthropic</td>
+        <td>AI Search / Citations</td>
+        <td>Claude Search / Retrieval</td>
+        <td><span class="pill pill-pass">Allowed (Default)</span></td>
+      </tr>
+      <tr>
+        <td><code>GPTBot</code></td>
+        <td>OpenAI</td>
+        <td>Model Training</td>
+        <td>OpenAI Model Training</td>
+        <td><span class="pill pill-pass">Allowed (Default)</span></td>
+      </tr>
+      <tr>
+        <td><code>anthropic-ai</code></td>
+        <td>Anthropic</td>
+        <td>Model Training</td>
+        <td>Anthropic Bulk Crawler</td>
+        <td><span class="pill pill-pass">Allowed (Default)</span></td>
+      </tr>
+      <tr>
+        <td><code>Google-Extended</code></td>
+        <td>Google</td>
+        <td>Model Training</td>
+        <td>Gemini AI Grounding/Training</td>
+        <td><span class="pill pill-pass">Allowed (Default)</span></td>
+      </tr>
+      <tr>
+        <td><code>Applebot-Extended</code></td>
+        <td>Apple</td>
+        <td>Model Training</td>
+        <td>Apple Intelligence Training</td>
+        <td><span class="pill pill-pass">Allowed (Default)</span></td>
+      </tr>
+      <tr>
+        <td><code>Meta-ExternalAgent</code></td>
+        <td>Meta</td>
+        <td>Model Training</td>
+        <td>Meta AI Crawler</td>
+        <td><span class="pill pill-pass">Allowed (Default)</span></td>
+      </tr>
+      <tr>
+        <td><code>Amazonbot</code></td>
+        <td>Amazon</td>
+        <td>Model Training</td>
+        <td>Alexa / Amazon Q Crawler</td>
+        <td><span class="pill pill-pass">Allowed (Default)</span></td>
+      </tr></tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>36-Check Audit Findings</h2>
+      
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-crit">CRITICAL</span>
+            <strong>/llms.txt file exists</strong>
+          </div>
+          <span class="pts-tag">0/7 pts</span>
+        </div>
+        <p class="check-detail">Missing /llms.txt (status 404). AI assistants look here for curated Markdown context.</p>
+        <p class="check-fix"><strong>Fix:</strong> Drop the generated llms.txt into your site root (/llms.txt).</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-crit">CRITICAL</span>
+            <strong>llms.txt follows llmstxt.org spec</strong>
+          </div>
+          <span class="pts-tag">0/6 pts</span>
+        </div>
+        <p class="check-detail">Spec issues: llms.txt is empty or missing.</p>
+        <p class="check-fix"><strong>Fix:</strong> Ensure llms.txt starts with # Title, &gt; Blockquote summary, and ## Section markdown links.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-crit">CRITICAL</span>
+            <strong>OAI-SearchBot allowed (ChatGPT Search / Citations)</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">OAI-SearchBot is BLOCKED (disallow: /). Your site cannot be cited by this engine.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add &quot;User-agent: OAI-SearchBot\nAllow: /&quot; to robots.txt.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-crit">CRITICAL</span>
+            <strong>PerplexityBot allowed (Perplexity Citations)</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">PerplexityBot is BLOCKED (disallow: /). Your site cannot be cited by this engine.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add &quot;User-agent: PerplexityBot\nAllow: /&quot; to robots.txt.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-crit">CRITICAL</span>
+            <strong>JSON-LD structured data present</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">No &lt;script type=&quot;application/ld+json&quot;&gt; found on homepage.</p>
+        <p class="check-fix"><strong>Fix:</strong> Embed the generated jsonld-snippets.html inside &lt;head&gt;.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>/llms-full.txt deep context pack exists</strong>
+          </div>
+          <span class="pts-tag">0/4 pts</span>
+        </div>
+        <p class="check-detail">No /llms-full.txt found for deep single-fetch LLM ingestion.</p>
+        <p class="check-fix"><strong>Fix:</strong> Publish the generated llms-full.txt alongside /llms.txt.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Semantic HTML landmarks (&lt;main&gt; / &lt;article&gt;)</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">No &lt;main&gt; or &lt;article&gt; semantic landmark found.</p>
+        <p class="check-fix"><strong>Fix:</strong> Wrap primary page content inside &lt;main&gt; and structured sections in &lt;article&gt; or &lt;section&gt;.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Adequate indexable copy (&gt;= 150 words)</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">Detected 22 visible words on the homepage.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add descriptive, server-rendered product copy, use-cases, and concrete facts (&gt;=150 words).</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Extractable FAQ / Q&amp;A content</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">Detected 0 Q&amp;A pair(s) in HTML.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add a concise FAQ section using &lt;details&gt;/&lt;summary&gt; or question headings paired with direct answers.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Sitemap declared in robots.txt</strong>
+          </div>
+          <span class="pts-tag">0/2 pts</span>
+        </div>
+        <p class="check-detail">No Sitemap: line found inside robots.txt.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add &quot;Sitemap: https://invoicespark-demo.example.com/sitemap.xml&quot; to robots.txt.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Explicit AI crawler rules configured</strong>
+          </div>
+          <span class="pts-tag">1/2 pts</span>
+        </div>
+        <p class="check-detail">AI crawlers rely on implicit fallback rules instead of explicit User-agent directives.</p>
+        <p class="check-fix"><strong>Fix:</strong> Explicitly allow OAI-SearchBot, ChatGPT-User, PerplexityBot, and ClaudeBot in robots.txt.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>All JSON-LD blocks are valid JSON</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">No JSON-LD blocks to validate.</p>
+        <p class="check-fix"><strong>Fix:</strong> Validate all JSON-LD blocks with JSON.parse before deploying.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>@context uses schema.org</strong>
+          </div>
+          <span class="pts-tag">0/2 pts</span>
+        </div>
+        <p class="check-detail">Missing &quot;@context&quot;: &quot;https://schema.org&quot; in JSON-LD.</p>
+        <p class="check-fix"><strong>Fix:</strong> Include &quot;@context&quot;: &quot;https://schema.org&quot; at the root of each JSON-LD entity.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Organization or Person entity schema</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">Missing Organization or Person schema.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add an Organization JSON-LD schema with name, url, logo, and sameAs links.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>WebSite / SoftwareApplication / Product schema</strong>
+          </div>
+          <span class="pts-tag">0/2 pts</span>
+        </div>
+        <p class="check-detail">Missing WebSite, SoftwareApplication, or Product schema.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add SoftwareApplication or Product schema with pricing offers.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>FAQPage JSON-LD schema</strong>
+          </div>
+          <span class="pts-tag">0/2 pts</span>
+        </div>
+        <p class="check-detail">No FAQPage JSON-LD schema detected.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add FAQPage JSON-LD mirroring your visible FAQ questions and answers.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>&lt;meta name=&quot;description&quot;&gt; present &amp; optimal (70–165 chars)</strong>
+          </div>
+          <span class="pts-tag">1/2 pts</span>
+        </div>
+        <p class="check-detail">Meta description (64 chars).</p>
+        <p class="check-fix"><strong>Fix:</strong> Add a 120–160 character &lt;meta name=&quot;description&quot;&gt; summarizing who the product helps.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Valid &lt;link rel=&quot;canonical&quot;&gt;</strong>
+          </div>
+          <span class="pts-tag">0/2 pts</span>
+        </div>
+        <p class="check-detail">Missing or invalid &lt;link rel=&quot;canonical&quot;&gt;.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add &lt;link rel=&quot;canonical&quot; href=&quot;https://invoicespark-demo.example.com/&quot;&gt; inside &lt;head&gt;.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>&lt;html lang=&quot;...&quot;&gt; attribute declared</strong>
+          </div>
+          <span class="pts-tag">0/1 pts</span>
+        </div>
+        <p class="check-detail">Missing lang attribute on &lt;html&gt;.</p>
+        <p class="check-fix"><strong>Fix:</strong> Set &lt;html lang=&quot;en&quot;&gt; (or your primary page language).</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>/sitemap.xml exists &amp; valid XML</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">Missing /sitemap.xml.</p>
+        <p class="check-fix"><strong>Fix:</strong> Publish a valid XML sitemap listing all canonical indexable URLs.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>og:title &amp; og:description set</strong>
+          </div>
+          <span class="pts-tag">1/2 pts</span>
+        </div>
+        <p class="check-detail">og:title: present, og:description: missing.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add og:title and og:description meta tags using the generated head-meta-patch.html.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>og:image present &amp; reachable (HTTP 200)</strong>
+          </div>
+          <span class="pts-tag">0/4 pts</span>
+        </div>
+        <p class="check-detail">Missing og:image meta tag.</p>
+        <p class="check-fix"><strong>Fix:</strong> Set og:image to a live 1200x630 image returning HTTP 200.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>og:url &amp; og:type configured</strong>
+          </div>
+          <span class="pts-tag">0/2 pts</span>
+        </div>
+        <p class="check-detail">og:url: missing, og:type: missing.</p>
+        <p class="check-fix"><strong>Fix:</strong> Include og:url and og:type=&quot;website&quot; in &lt;head&gt;.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Twitter Card metadata (twitter:card + title)</strong>
+          </div>
+          <span class="pts-tag">1/2 pts</span>
+        </div>
+        <p class="check-detail">twitter:card: missing.</p>
+        <p class="check-fix"><strong>Fix:</strong> Add &lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt; and twitter:title/description/image.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Responsive viewport &amp; favicon configured</strong>
+          </div>
+          <span class="pts-tag">1/3 pts</span>
+        </div>
+        <p class="check-detail">viewport: present, favicon: missing.</p>
+        <p class="check-fix"><strong>Fix:</strong> Ensure &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; and a favicon &lt;link&gt;.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Image alt attribute coverage (&gt;= 90%)</strong>
+          </div>
+          <span class="pts-tag">0/3 pts</span>
+        </div>
+        <p class="check-detail">0/1 images have alt text (0%).</p>
+        <p class="check-fix"><strong>Fix:</strong> Add descriptive alt attributes to every meaningful &lt;img&gt; tag.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-warn">WARNING</span>
+            <strong>Lean HTML payload (&lt; 250 KB) &amp; delivery signals</strong>
+          </div>
+          <span class="pts-tag">1/2 pts</span>
+        </div>
+        <p class="check-detail">HTML size 0.6 KB; security/cache headers: none detected.</p>
+        <p class="check-fix"><strong>Fix:</strong> Keep initial HTML under 250 KB and enable security/caching headers on your host.</p>
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>Clear opening summary paragraph</strong>
+          </div>
+          <span class="pts-tag">4/4 pts</span>
+        </div>
+        <p class="check-detail">Extractable opening copy (103 chars).</p>
+        
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>/robots.txt exists</strong>
+          </div>
+          <span class="pts-tag">3/3 pts</span>
+        </div>
+        <p class="check-detail">Found /robots.txt (159 chars).</p>
+        
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>ChatGPT-User allowed (ChatGPT Live Retrieval)</strong>
+          </div>
+          <span class="pts-tag">3/3 pts</span>
+        </div>
+        <p class="check-detail">ChatGPT-User is allowed via wildcard/default.</p>
+        
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>ClaudeBot allowed (Claude Search / Retrieval)</strong>
+          </div>
+          <span class="pts-tag">3/3 pts</span>
+        </div>
+        <p class="check-detail">ClaudeBot is allowed via wildcard/default.</p>
+        
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>No blanket User-agent: * Disallow: /</strong>
+          </div>
+          <span class="pts-tag">1/1 pts</span>
+        </div>
+        <p class="check-detail">Wildcard crawler access is open.</p>
+        
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>&lt;title&gt; tag present &amp; optimal length (20–68 chars)</strong>
+          </div>
+          <span class="pts-tag">2/2 pts</span>
+        </div>
+        <p class="check-detail">Title (38 chars): &quot;InvoiceSpark — Simple Client Invoicing&quot;</p>
+        
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>Single &lt;h1&gt; &amp; clean heading hierarchy</strong>
+          </div>
+          <span class="pts-tag">3/3 pts</span>
+        </div>
+        <p class="check-detail">Found 1 &lt;h1&gt; tag(s). Sequential heading hierarchy.</p>
+        
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>No accidental noindex directive</strong>
+          </div>
+          <span class="pts-tag">2/2 pts</span>
+        </div>
+        <p class="check-detail">Page is indexable (no noindex meta detected).</p>
+        
+      </div>
+      <div class="check-item">
+        <div class="check-head">
+          <div>
+            <span class="pill pill-pass">PASS</span>
+            <strong>HTTPS canonical origin</strong>
+          </div>
+          <span class="pts-tag">2/2 pts</span>
+        </div>
+        <p class="check-detail">HTTPS active (https://invoicespark-demo.example.com).</p>
+        
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Generated Drop-In Fix Files</h2>
+      <div class="tab-bar"><button type="button" class="tab-btn active" data-tab="fix-0">llms.txt</button><button type="button" class="tab-btn" data-tab="fix-1">llms-full.txt</button><button type="button" class="tab-btn" data-tab="fix-2">robots.txt</button><button type="button" class="tab-btn" data-tab="fix-3">jsonld-snippets.html</button><button type="button" class="tab-btn" data-tab="fix-4">head-meta-patch.html</button><button type="button" class="tab-btn" data-tab="fix-5">nextjs-metadata.ts</button></div>
+      
+      <div class="tab-panel active" id="fix-0">
+        <div class="panel-bar">
+          <code>llms.txt</code>
+          <button type="button" class="copy-btn" data-copy-target="code-0">Copy File</button>
+        </div>
+        <pre id="code-0"><code># InvoiceSpark
+
+&gt; Create client invoices quickly without complex accounting tools.
+
+This file follows the llmstxt.org standard to help AI assistants accurately retrieve and cite InvoiceSpark.
+
+## Key Pages
+- [InvoiceSpark — Simple Client Invoicing](https://invoicespark-demo.example.com/): Create client invoices quickly without complex accounting tools.
+- [Pricing](https://invoicespark-demo.example.com/pricing): Site section on InvoiceSpark.
+- [Docs](https://invoicespark-demo.example.com/docs): Site section on InvoiceSpark.
+
+## Machine-Readable Resources
+- [Full Markdown Context](https://invoicespark-demo.example.com/llms-full.txt): Consolidated site overview for single-fetch retrieval.
+- [XML Sitemap](https://invoicespark-demo.example.com/sitemap.xml): Canonical URL index for search and AI crawlers.
+</code></pre>
+      </div>
+      <div class="tab-panel" id="fix-1">
+        <div class="panel-bar">
+          <code>llms-full.txt</code>
+          <button type="button" class="copy-btn" data-copy-target="code-1">Copy File</button>
+        </div>
+        <pre id="code-1"><code># InvoiceSpark — Full Context Reference
+
+&gt; Create client invoices quickly without complex accounting tools.
+
+Canonical Origin: https://invoicespark-demo.example.com
+Generated By: CiteReady Auto-Fix Engine
+
+---
+
+## InvoiceSpark — Simple Client Invoicing
+URL: https://invoicespark-demo.example.com/
+Summary: Create client invoices quickly without complex accounting tools.
+
+Key Sections:
+### Client Invoicing Without Monthly Accounting Bloat
+
+Overview:
+InvoiceSpark helps solo freelancers generate PDF invoices and track overdue client payments in minutes.
+
+---
+</code></pre>
+      </div>
+      <div class="tab-panel" id="fix-2">
+        <div class="panel-bar">
+          <code>robots.txt</code>
+          <button type="button" class="copy-btn" data-copy-target="code-2">Copy File</button>
+        </div>
+        <pre id="code-2"><code># Generated by CiteReady (https://citeready.eiran.tech)
+
+User-agent: *
+Allow: /
+
+# AI Search &amp; Citation Crawlers (Recommended: Allow for ChatGPT, Perplexity &amp; Claude citations)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Optional: AI Model Training Crawlers (Switch Allow: / to Disallow: / if you want to opt out of training)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://invoicespark-demo.example.com/sitemap.xml
+</code></pre>
+      </div>
+      <div class="tab-panel" id="fix-3">
+        <div class="panel-bar">
+          <code>jsonld-snippets.html</code>
+          <button type="button" class="copy-btn" data-copy-target="code-3">Copy File</button>
+        </div>
+        <pre id="code-3"><code>&lt;!-- Drop inside &lt;head&gt; of your site --&gt;
+
+&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;Organization&quot;,
+  &quot;name&quot;: &quot;InvoiceSpark&quot;,
+  &quot;url&quot;: &quot;https://invoicespark-demo.example.com&quot;,
+  &quot;description&quot;: &quot;Create client invoices quickly without complex accounting tools.&quot;,
+  &quot;logo&quot;: &quot;https://invoicespark-demo.example.com/og-image.png&quot;
+}
+&lt;/script&gt;
+
+&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;WebSite&quot;,
+  &quot;name&quot;: &quot;InvoiceSpark&quot;,
+  &quot;url&quot;: &quot;https://invoicespark-demo.example.com&quot;,
+  &quot;description&quot;: &quot;Create client invoices quickly without complex accounting tools.&quot;
+}
+&lt;/script&gt;
+
+&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;SoftwareApplication&quot;,
+  &quot;name&quot;: &quot;InvoiceSpark&quot;,
+  &quot;applicationCategory&quot;: &quot;BusinessApplication&quot;,
+  &quot;operatingSystem&quot;: &quot;Web&quot;,
+  &quot;url&quot;: &quot;https://invoicespark-demo.example.com&quot;,
+  &quot;description&quot;: &quot;Create client invoices quickly without complex accounting tools.&quot;
+}
+&lt;/script&gt;
+
+&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;FAQPage&quot;,
+  &quot;mainEntity&quot;: [
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;What does InvoiceSpark do?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Create client invoices quickly without complex accounting tools.&quot;
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;Where can I learn more about InvoiceSpark?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Visit https://invoicespark-demo.example.com for product overview, documentation, and pricing.&quot;
+      }
+    }
+  ]
+}
+&lt;/script&gt;
+</code></pre>
+      </div>
+      <div class="tab-panel" id="fix-4">
+        <div class="panel-bar">
+          <code>head-meta-patch.html</code>
+          <button type="button" class="copy-btn" data-copy-target="code-4">Copy File</button>
+        </div>
+        <pre id="code-4"><code>&lt;!-- Drop inside &lt;head&gt; --&gt;
+&lt;title&gt;InvoiceSpark — Simple Client Invoicing&lt;/title&gt;
+&lt;meta name=&quot;description&quot; content=&quot;Create client invoices quickly without complex accounting tools.&quot;&gt;
+&lt;link rel=&quot;canonical&quot; href=&quot;https://invoicespark-demo.example.com/&quot;&gt;
+&lt;meta name=&quot;robots&quot; content=&quot;index, follow&quot;&gt;
+
+&lt;!-- Open Graph --&gt;
+&lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;
+&lt;meta property=&quot;og:site_name&quot; content=&quot;InvoiceSpark&quot;&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;InvoiceSpark — Simple Client Invoicing&quot;&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;Create client invoices quickly without complex accounting tools.&quot;&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://invoicespark-demo.example.com/&quot;&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;https://invoicespark-demo.example.com/og-image.png&quot;&gt;
+
+&lt;!-- Twitter / X --&gt;
+&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
+&lt;meta name=&quot;twitter:title&quot; content=&quot;InvoiceSpark — Simple Client Invoicing&quot;&gt;
+&lt;meta name=&quot;twitter:description&quot; content=&quot;Create client invoices quickly without complex accounting tools.&quot;&gt;
+&lt;meta name=&quot;twitter:image&quot; content=&quot;https://invoicespark-demo.example.com/og-image.png&quot;&gt;
+</code></pre>
+      </div>
+      <div class="tab-panel" id="fix-5">
+        <div class="panel-bar">
+          <code>nextjs-metadata.ts</code>
+          <button type="button" class="copy-btn" data-copy-target="code-5">Copy File</button>
+        </div>
+        <pre id="code-5"><code>import type { Metadata } from &#39;next&#39;;
+
+export const metadata: Metadata = {
+  metadataBase: new URL(&quot;https://invoicespark-demo.example.com&quot;),
+  title: &quot;InvoiceSpark — Simple Client Invoicing&quot;,
+  description: &quot;Create client invoices quickly without complex accounting tools.&quot;,
+  alternates: {
+    canonical: &#39;/&#39;,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: &#39;website&#39;,
+    siteName: &quot;InvoiceSpark&quot;,
+    title: &quot;InvoiceSpark — Simple Client Invoicing&quot;,
+    description: &quot;Create client invoices quickly without complex accounting tools.&quot;,
+    url: &quot;https://invoicespark-demo.example.com/&quot;,
+    images: [{ url: &quot;https://invoicespark-demo.example.com/og-image.png&quot;, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: &#39;summary_large_image&#39;,
+    title: &quot;InvoiceSpark — Simple Client Invoicing&quot;,
+    description: &quot;Create client invoices quickly without complex accounting tools.&quot;,
+    images: [&quot;https://invoicespark-demo.example.com/og-image.png&quot;],
+  },
+};
+</code></pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Crawled Pages (1)</h2>
+      <table>
+        <thead><tr><th>Path</th><th>Status</th><th>Title</th><th>Words</th></tr></thead>
+        <tbody>
+      <tr>
+        <td><code>/</code></td>
+        <td>200</td>
+        <td>InvoiceSpark — Simple Client Invoicing</td>
+        <td>22</td>
+      </tr></tbody>
+      </table>
+    </section>
+
+    <footer>
+      Generated by CiteReady &middot; Zero-dependency AI Search (GEO) &amp; Launch Audit Engine
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById(btn.getAttribute('data-tab'));
+        if (panel) panel.classList.add('active');
+      });
+    });
+    document.querySelectorAll('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const el = document.getElementById(btn.getAttribute('data-copy-target'));
+        if (!el) return;
+        try {
+          await navigator.clipboard.writeText(el.innerText);
+          const orig = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = orig; }, 1500);
+        } catch {
+          btn.textContent = 'Copy manually';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

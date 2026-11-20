@@ -1,0 +1,21 @@
+date_found,company_or_product,domain,channel,audit_score,critical_issues,top_finding,contact_method,status,notes
+2026-11-20,FlowJam,flowjam.com,SaaS Studio,72,2,/llms.txt file exists,pending_review,audited_draft_ready,Report in tmp-outreach/flowjam.com
+2026-11-20,PromptsToProduct,promptstoproduct.com,Indie Builder,74,2,/llms.txt file exists,pending_review,audited_draft_ready,Report in tmp-outreach/promptstoproduct.com
+2026-11-20,IndieWait,indiewait.com,Indie SaaS,78,2,/llms.txt file exists,pending_review,audited_draft_ready,Report in tmp-outreach/indiewait.com
+2026-11-20,IdeaProof,ideaproof.io,Indie SaaS,80,1,Single <h1> & clean heading hierarchy,pending_review,audited_draft_ready,Report in tmp-outreach/ideaproof.io
+2026-11-20,MadeByEvoke,madebyevoke.com,Web Design Studio,83,1,Single <h1> & clean heading hierarchy,pending_review,audited_draft_ready,Report in tmp-outreach/madebyevoke.com
+2026-11-20,DesignSpark Studio,designspark.studio,Next.js Boutique Studio,90,1,og:image present & reachable (HTTP 200),pending_review,audited_draft_ready,Report in tmp-outreach/designspark.studio
+2026-11-20,TLDL,tldl.io,Indie Tool,86,0,llms.txt follows llmstxt.org spec,pending_review,audited_draft_ready,Report in tmp-outreach/tldl.io
+2026-11-20,IndieTool,indietool.io,Indie Directory,86,0,llms.txt follows llmstxt.org spec,pending_review,audited_draft_ready,Report in tmp-outreach/indietool.io
+2026-11-20,LaunchIt Fast,launchit.fast,Dev Tool,86,0,Clear opening summary paragraph,pending_review,audited_draft_ready,Report in tmp-outreach/launchit.fast
+2026-11-20,BetterLaunch,betterlaunch.co,Launch Platform,87,0,/llms-full.txt deep context pack exists,pending_review,audited_draft_ready,Report in tmp-outreach/betterlaunch.co
+2026-11-20,PlanMySaaS,planmysaas.com,Indie SaaS,88,0,/llms-full.txt deep context pack exists,pending_review,audited_draft_ready,Report in tmp-outreach/planmysaas.com
+2026-11-20,AltHunt,althunt.io,OSS Directory,91,0,Extractable FAQ / Q&A content,pending_review,audited_draft_ready,Report in tmp-outreach/althunt.io
+2026-11-20,Vortex Labs,getvortexlabs.com,Next.js Agency,91,0,/llms-full.txt deep context pack exists,pending_review,audited_draft_ready,Report in tmp-outreach/getvortexlabs.com
+2026-11-20,Dixi Agency,dixi.agency,Product Design Studio,91,0,/llms-full.txt deep context pack exists,pending_review,audited_draft_ready,Report in tmp-outreach/dixi.agency
+2026-11-20,SmolLaunch,smollaunch.com,Launch Directory,92,0,Clear opening summary paragraph,pending_review,audited_draft_ready,Report in tmp-outreach/smollaunch.com
+2026-11-20,Hexcode Design,hexcode.design,Next.js Boutique Agency,92,0,Extractable FAQ / Q&A content,pending_review,audited_draft_ready,Report in tmp-outreach/hexcode.design
+2026-11-20,Preuve AI,preuve.ai,Micro-SaaS,94,0,Extractable FAQ / Q&A content,pending_review,audited_draft_ready,Report in tmp-outreach/preuve.ai
+2026-11-20,SmartCtx,smartctx.dev,Next.js Studio,94,0,/llms-full.txt deep context pack exists,pending_review,audited_draft_ready,Report in tmp-outreach/smartctx.dev
+2026-11-20,Roboto Studio,robotostudio.com,Next.js Agency,98,0,Lean HTML payload (< 250 KB) & delivery signals,pending_review,audited_draft_ready,Report in tmp-outreach/robotostudio.com
+2026-11-20,VenturOS,ventur-os.com,Startup Tool,100,0,Minor optimizations,pending_review,audited_draft_ready,Report in tmp-outreach/ventur-os.com

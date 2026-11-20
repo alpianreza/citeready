@@ -1,0 +1,35 @@
+# 20 Real Target Sites for Day 2 Live CiteReady Batch Audit
+# Discovered via live 2026 web research (Indie SaaS, Dev Tools, Boutique Next.js Agencies).
+# Format: URL | Product/Studio Name | Segment / Source
+#
+# Run on any internet-connected terminal (Eiran or Bos):
+#   node scripts/batch-prospect-audit.mjs ops/prospect-urls.txt --append-csv
+#
+# Output:
+#   - Appends real verified audit scores & top issues into ops/prospects.csv
+#   - Generates full per-site HTML reports + 6 fix files in tmp-outreach/<domain>/
+#   - Generates ranked 1-on-1 value-first outreach drafts in tmp-outreach/outreach-drafts.md
+
+# --- Indie SaaS & Solo Founder Products ($19 Pro CLI / $29 DFY Targets) ---
+https://ideaproof.io | IdeaProof | Indie SaaS
+https://indiewait.com | IndieWait | Indie SaaS
+https://preuve.ai | Preuve AI | Micro-SaaS
+https://tldl.io | TLDL | Indie Tool
+https://planmysaas.com | PlanMySaaS | Indie SaaS
+https://ventur-os.com | VenturOS | Startup Tool
+https://promptstoproduct.com | PromptsToProduct | Indie Builder
+https://flowjam.com | FlowJam | SaaS Studio
+https://smollaunch.com | SmolLaunch | Launch Directory
+https://indietool.io | IndieTool | Indie Directory
+https://betterlaunch.co | BetterLaunch | Launch Platform
+https://launchit.fast | LaunchIt Fast | Dev Tool
+https://althunt.io | AltHunt | OSS Directory
+
+# --- Boutique Web & Next.js Agencies ($49 Agency Ship Pack Targets) ---
+https://hexcode.design | Hexcode Design | Next.js Boutique Agency
+https://getvortexlabs.com | Vortex Labs | Next.js Agency
+https://smartctx.dev | SmartCtx | Next.js Studio
+https://madebyevoke.com | MadeByEvoke | Web Design Studio
+https://robotostudio.com | Roboto Studio | Next.js Agency
+https://dixi.agency | Dixi Agency | Product Design Studio
+https://designspark.studio | DesignSpark Studio | Next.js Boutique Studio

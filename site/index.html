@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CiteReady — AI Search (GEO) &amp; Launch-Readiness Fix Kit</title>
+  <meta name="description" content="Audit 36 AI Search (GEO), llms.txt, AI crawler robots.txt, JSON-LD &amp; SEO checks in seconds—then auto-generate drop-in fix files for $19 one-time.">
+  <link rel="canonical" href="https://citeready.eiran.tech/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CiteReady">
+  <meta property="og:title" content="CiteReady — Make ChatGPT, Perplexity &amp; Claude Cite Your Site">
+  <meta property="og:description" content="36-check GEO, llms.txt, AI crawler, JSON-LD, and SEO audit CLI + auto-fix generator. One-time $19 license instead of $49/mo subscriptions.">
+  <meta property="og:url" content="https://citeready.eiran.tech/">
+  <meta property="og:image" content="https://citeready.eiran.tech/og-card.svg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CiteReady — AI Search (GEO) &amp; Launch-Readiness Fix Kit">
+  <meta name="twitter:description" content="Audit 36 AI Search (GEO), llms.txt, AI crawler &amp; JSON-LD checks and generate ready-to-drop fix files for $19 one-time.">
+  <meta name="twitter:image" content="https://citeready.eiran.tech/og-card.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CiteReady",
+    "url": "https://citeready.eiran.tech/",
+    "logo": "https://citeready.eiran.tech/og-card.svg",
+    "description": "Zero-dependency AI Search (GEO), llms.txt, AI crawler, and launch-readiness audit CLI and fix generator."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CiteReady",
+    "url": "https://citeready.eiran.tech/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CiteReady Pro CLI",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux (Node.js 18+)",
+    "url": "https://citeready.eiran.tech/",
+    "offers": {
+      "@type": "Offer",
+      "price": "19.00",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why buy CiteReady instead of a $29-$49/month GEO tracker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Monthly GEO trackers monitor prompt mentions passively. CiteReady audits the actual technical blockers preventing AI engines from reading your site and generates the exact llms.txt, robots.txt, JSON-LD, and meta fix files for a one-time payment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does CiteReady require API keys or external npm dependencies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. CiteReady runs deterministically on Node.js 18+ with zero external runtime dependencies and zero paid LLM API keys."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I audit local Next.js, Astro, or Vite static builds before deploying?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Pass --dir ./dist --url https://yourdomain.com --min-score 85 in local terminal or GitHub Actions CI to catch GEO and SEO regressions before shipping."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the $29 Done-For-You Fix Pack work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Submit your target URL and stack at checkout. Within 24 hours you receive a full white-label HTML/PDF audit report plus custom-tuned llms.txt, llms-full.txt, robots.txt, JSON-LD, and head meta files ready to drop into your repository."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="/">
+        <span class="brand-mark">
+          <img src="/favicon.svg" alt="CiteReady logo" width="22" height="22">
+        </span>
+        <span>CiteReady</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#interactive-scanner">Browser Tools</a>
+        <a href="#checks">36 Checks</a>
+        <a href="#comparison">vs. Monthly SaaS</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-right">
+        <a class="btn btn-ghost btn-sm" href="/sample-report.html">Sample Report</a>
+        <a class="btn btn-primary btn-sm" href="#pricing">Get Fix Kit &mdash; $19</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: Split Engineering Console -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            v1.0.0 &middot; Zero-Dependency Node 18+ Engine
+          </span>
+          <h1>
+            Make ChatGPT, Perplexity &amp; Claude <span class="text-gradient">Cite Your Site.</span>
+          </h1>
+          <p class="hero-lead">
+            Stop paying $29&ndash;$49/month for passive GEO dashboards that never touch your repo. CiteReady audits <strong>36 technical AI Search, <code class="inline-code">llms.txt</code>, AI crawler, JSON-LD &amp; SEO checks</strong>&mdash;then writes 6 ready-to-drop fix files locally for a single $19 license.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#pricing">Get Pro CLI &mdash; $19</a>
+            <a class="btn btn-secondary" href="#interactive-scanner">Try 3 Browser Tools</a>
+            <a class="btn btn-ghost" href="/downloads/citeready-free-v1.0.0.zip" download>Free Lite ZIP</a>
+          </div>
+          <div class="cmd-box" aria-label="CLI Command">
+            <div class="cmd-text">
+              <span class="prompt">$</span><span class="hl">node bin/citeready.mjs</span> https://app.com --fix --min-score 85
+            </div>
+            <button type="button" class="copy-mini" id="btn-copy-hero-cmd">Copy</button>
+          </div>
+        </div>
+
+        <!-- Live Interactive Before/After Telemetry Console -->
+        <div class="console-shell" aria-label="Interactive Before and After CLI Telemetry">
+          <div class="console-topbar">
+            <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="diff-switch" role="group" aria-label="Toggle audit before and after">
+              <button type="button" class="diff-btn active-before" id="hero-toggle-before">Before (29/100)</button>
+              <button type="button" class="diff-btn" id="hero-toggle-after">After Fixes (100/100)</button>
+            </div>
+          </div>
+          <div class="console-body">
+            <div class="telemetry-top">
+              <div class="ring-wrap">
+                <svg width="88" height="88" viewBox="0 0 88 88" aria-hidden="true">
+                  <circle cx="44" cy="44" r="36" fill="none" stroke="rgba(148,163,184,0.16)" stroke-width="8"/>
+                  <circle id="hero-ring" class="ring-progress" cx="44" cy="44" r="36" fill="none" stroke="#f43f5e" stroke-width="8"
+                    stroke-linecap="round" stroke-dasharray="226.19" stroke-dashoffset="160.59"
+                    transform="rotate(-90 44 44)"/>
+                </svg>
+                <div class="ring-label">
+                  <span class="ring-num" id="hero-score-num" style="color:#fda4af;">29</span>
+                  <span class="ring-grade" id="hero-score-grade">Grade F</span>
+                </div>
+              </div>
+              <div class="telemetry-meta">
+                <h2 id="hero-console-title">invoicespark-demo.example.com</h2>
+                <p id="hero-console-sub">Fresh SaaS launch fixture before CiteReady fix pack</p>
+                <div class="telemetry-pills" id="hero-console-pills">
+                  <span class="tag-fail">5 CRITICAL</span>
+                  <span class="tag-warn">22 WARNINGS</span>
+                  <span class="tag-pass">9 PASSED</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="console-bars">
+              <div class="cbar-row">
+                <span>AI Search / GEO</span>
+                <div class="cbar-track"><div class="cbar-fill" id="bar-geo" style="width:13%;background:#f43f5e;"></div></div>
+                <span id="val-geo">4/30</span>
+              </div>
+              <div class="cbar-row">
+                <span>AI Crawlers</span>
+                <div class="cbar-track"><div class="cbar-fill" id="bar-crawl" style="width:55%;background:#f59e0b;"></div></div>
+                <span id="val-crawl">11/20</span>
+              </div>
+              <div class="cbar-row">
+                <span>JSON-LD Schema</span>
+                <div class="cbar-track"><div class="cbar-fill" id="bar-schema" style="width:0%;background:#f43f5e;"></div></div>
+                <span id="val-schema">0/15</span>
+              </div>
+              <div class="cbar-row">
+                <span>Tech SEO &amp; OG</span>
+                <div class="cbar-track"><div class="cbar-fill" id="bar-seo" style="width:40%;background:#f59e0b;"></div></div>
+                <span id="val-seo">10/25</span>
+              </div>
+            </div>
+
+            <div class="console-log" id="hero-console-log">
+              <div class="log-crit">[CRITICAL] /llms.txt missing (HTTP 404)</div>
+              <div class="log-crit">[CRITICAL] OAI-SearchBot &amp; PerplexityBot BLOCKED in robots.txt</div>
+              <div class="log-crit">[CRITICAL] No Organization / Product / FAQPage JSON-LD</div>
+              <div class="log-dim">Toggle "After Fixes (100/100)" above to view post-fix output &rarr;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HONEST ENGINEERING TELEMETRY STRIP -->
+    <div class="spec-strip" aria-label="Technical Specifications">
+      <div class="container spec-grid">
+        <div class="spec-item">
+          <div class="spec-val">36</div>
+          <div class="spec-lbl">Weighted Checks</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">10</div>
+          <div class="spec-lbl">AI Bots Evaluated</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">6</div>
+          <div class="spec-lbl">Drop-In Fix Files</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">0</div>
+          <div class="spec-lbl">npm Dependencies</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">$0/mo</div>
+          <div class="spec-lbl">Recurring Fees</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-val">100/100</div>
+          <div class="spec-lbl">This Site's Score</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-IN-1 INTERACTIVE BROWSER WORKBENCH -->
+    <section class="section section-band" id="interactive-scanner">
+      <div class="container">
+        <span class="section-kicker">Interactive Workbench</span>
+        <h2 class="section-title">Free 3-in-1 Browser GEO Toolkit</h2>
+        <p class="section-sub">
+          Test everything live in your browser memory&mdash;zero signup, zero backend upload. Inspect HTML metadata, test if your <code class="inline-code">robots.txt</code> blocks AI search crawlers, or validate <code class="inline-code">llms.txt</code> against <code class="inline-code">llmstxt.org</code>.
+        </p>
+
+        <div class="workbench-frame">
+          <div class="workbench-header">
+            <div class="tool-switcher" role="tablist" aria-label="Browser GEO Tools">
+              <button type="button" class="tool-tab active" role="tab" aria-selected="true" data-tool-tab="html">01. HTML Scanner &amp; Fixes</button>
+              <button type="button" class="tool-tab" role="tab" aria-selected="false" data-tool-tab="robots">02. robots.txt AI Bot Matrix</button>
+              <button type="button" class="tool-tab" role="tab" aria-selected="false" data-tool-tab="llms">03. llms.txt Spec Validator</button>
+            </div>
+            <span class="local-badge">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              100% Client-Side &middot; Nothing Uploaded
+            </span>
+          </div>
+
+          <!-- Tool 1: HTML Scanner -->
+          <div class="tool-panel active" id="tool-panel-html">
+            <div class="demo-grid">
+              <div class="pane">
+                <div class="demo-controls">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-sample-broken">Broken SaaS Sample</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-sample-good">Optimized Sample</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="btn-run-demo">Run Scan</button>
+                </div>
+                <label class="field-label" for="demo-url">Site Origin URL</label>
+                <input class="text-input" id="demo-url" type="url" value="https://broken-saas.example.com" style="margin-bottom:14px;">
+                <label class="field-label" for="demo-html">Page HTML Source</label>
+                <textarea class="code-input" id="demo-html" spellcheck="false"></textarea>
+              </div>
+
+              <div class="pane">
+                <div class="score-row">
+                  <div>
+                    <div class="field-label" style="margin-bottom:4px;">Quick Browser Score</div>
+                    <div class="score-pill" id="demo-score">0/100</div>
+                  </div>
+                  <a class="btn btn-secondary btn-sm" href="/sample-report.html">Full 36-Check Report &rarr;</a>
+                </div>
+                <div class="demo-checks" id="demo-checks"></div>
+
+                <div class="preview-bar">
+                  <div class="preview-tabs">
+                    <button type="button" class="preview-tab active" data-preview="llms">llms.txt</button>
+                    <button type="button" class="preview-tab" data-preview="robots">robots.txt</button>
+                    <button type="button" class="preview-tab" data-preview="jsonld">JSON-LD</button>
+                  </div>
+                  <button type="button" class="copy-mini" id="btn-copy-preview">Copy Snippet</button>
+                </div>
+                <pre class="preview-code" id="preview-llms"></pre>
+                <pre class="preview-code" id="preview-robots" style="display:none;"></pre>
+                <pre class="preview-code" id="preview-jsonld" style="display:none;"></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tool 2: robots.txt AI Bot Checker -->
+          <div class="tool-panel" id="tool-panel-robots">
+            <div class="demo-grid">
+              <div class="pane">
+                <div class="demo-controls">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-robots-blocked">Blocked Sample</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-robots-open">Citation-Ready Sample</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="btn-check-robots">Evaluate 10 AI Bots</button>
+                </div>
+                <label class="field-label" for="robots-input">Paste Your Current robots.txt</label>
+                <textarea class="code-input" id="robots-input" spellcheck="false"></textarea>
+              </div>
+              <div class="pane">
+                <div class="score-row">
+                  <div>
+                    <div class="field-label" style="margin-bottom:4px;">AI Search &amp; Training Access</div>
+                    <div id="robots-summary" style="font-family:var(--font-display);font-weight:700;font-size:22px;">Checking...</div>
+                  </div>
+                  <a class="btn btn-primary btn-sm" href="#pricing">Auto-Fix All 36 Checks</a>
+                </div>
+                <div class="demo-checks" id="robots-matrix"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tool 3: llms.txt Spec Validator -->
+          <div class="tool-panel" id="tool-panel-llms">
+            <div class="demo-grid">
+              <div class="pane">
+                <div class="demo-controls">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-llms-invalid">Broken Sample</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-llms-valid">Valid Sample</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="btn-validate-llms">Validate Spec</button>
+                </div>
+                <label class="field-label" for="llms-input">Paste Your Current llms.txt</label>
+                <textarea class="code-input" id="llms-input" spellcheck="false"></textarea>
+              </div>
+              <div class="pane">
+                <div class="score-row">
+                  <div>
+                    <div class="field-label" style="margin-bottom:4px;">Official llmstxt.org Compliance</div>
+                    <div class="score-pill" id="llms-score">0/100</div>
+                  </div>
+                  <span id="llms-status-badge" class="tag-fail">INVALID</span>
+                </div>
+                <div class="demo-checks" id="llms-checks"></div>
+                <div id="llms-issues" style="margin-top:14px;font-size:13px;color:var(--ink-2);font-family:var(--font-mono);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 WEIGHTED PILLARS (BENTO GRID) -->
+    <section class="section" id="checks">
+      <div class="container">
+        <span class="section-kicker">36 Deterministic Checks</span>
+        <h2 class="section-title">Everything AI Engines &amp; Launch Feeds Inspect</h2>
+        <p class="section-sub">
+          Engineered for solo founders, dev-tool makers, and Next.js studios shipping fast who refuse to ship broken <code class="inline-code">og:image</code> URLs, missing <code class="inline-code">llms.txt</code> files, or accidental crawler blocks.
+        </p>
+
+        <div class="bento-grid">
+          <article class="bento-card span-6">
+            <div class="bento-top">
+              <span class="icon-box" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </span>
+              <span class="pillar-weight">30 PTS &middot; 7 CHECKS</span>
+            </div>
+            <h3>AI Search &amp; GEO Readiness</h3>
+            <p>Validates <code class="inline-code">/llms.txt</code> against the official <code class="inline-code">llmstxt.org</code> H1 &rarr; blockquote &rarr; H2 markdown-link spec, checks <code class="inline-code">/llms-full.txt</code>, semantic <code class="inline-code">&lt;main&gt;/&lt;article&gt;</code> landmarks, server-rendered copy depth, and Q&amp;A extractability.</p>
+          </article>
+
+          <article class="bento-card span-6">
+            <div class="bento-top">
+              <span class="icon-box" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+              </span>
+              <span class="pillar-weight">20 PTS &middot; 8 CHECKS</span>
+            </div>
+            <h3>AI Crawler Policy Matrix</h3>
+            <p>Applies longest-prefix <code class="inline-code">robots.txt</code> rule matching across 10 AI crawlers&mdash;cleanly separating citation bots (<code class="inline-code">OAI-SearchBot</code>, <code class="inline-code">ChatGPT-User</code>, <code class="inline-code">PerplexityBot</code>, <code class="inline-code">ClaudeBot</code>) from model-training bots (<code class="inline-code">GPTBot</code>, <code class="inline-code">Google-Extended</code>).</p>
+          </article>
+
+          <article class="bento-card">
+            <div class="bento-top">
+              <span class="icon-box" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </span>
+              <span class="pillar-weight">15 PTS &middot; 6 CHECKS</span>
+            </div>
+            <h3>JSON-LD Structured Data</h3>
+            <p>Parses every <code class="inline-code">application/ld+json</code> script with <code class="inline-code">JSON.parse</code> and validates <code class="inline-code">Organization</code>, <code class="inline-code">WebSite</code>, <code class="inline-code">SoftwareApplication</code>, and <code class="inline-code">FAQPage</code> entities.</p>
+          </article>
+
+          <article class="bento-card">
+            <div class="bento-top">
+              <span class="icon-box" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <span class="pillar-weight">15 PTS &middot; 7 CHECKS</span>
+            </div>
+            <h3>Technical SEO Foundations</h3>
+            <p>Checks title &amp; description bounds, single <code class="inline-code">&lt;h1&gt;</code> &amp; heading hierarchy, canonical link, <code class="inline-code">&lt;html lang&gt;</code>, XML sitemap validity, and accidental <code class="inline-code">noindex</code> tags.</p>
+          </article>
+
+          <article class="bento-card">
+            <div class="bento-top">
+              <span class="icon-box" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </span>
+              <span class="pillar-weight">10 PTS &middot; 4 CHECKS</span>
+            </div>
+            <h3>Open Graph &amp; Live Image Check</h3>
+            <p>Verifies <code class="inline-code">og:title</code>, <code class="inline-code">og:description</code>, <code class="inline-code">og:url</code>, Twitter Cards, plus a real HTTP 200 reachability check on <code class="inline-code">og:image</code> so previews never 404 on X or Slack.</p>
+          </article>
+
+          <article class="bento-card span-6" style="grid-column: span 12;">
+            <div class="bento-top">
+              <span class="icon-box" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              </span>
+              <span class="pillar-weight">10 PTS &middot; 4 CHECKS + CI GATE</span>
+            </div>
+            <h3>Delivery Signals, Accessibility &amp; GitHub Actions Score Gate</h3>
+            <p>Verifies HTTPS canonical origin, mobile viewport, favicon, image <code class="inline-code">alt</code> coverage (&ge;90%), lean initial HTML (&lt;250 KB), and ships a ready-to-drop <code class="inline-code">.github/workflows/citeready-gate.yml</code> that fails PR builds whenever <code class="inline-code">--dir ./dist</code> drops below <code class="inline-code">--min-score 85</code>.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPETITOR COMPARISON (1-YEAR COST REALITY) -->
+    <section class="section section-band" id="comparison">
+      <div class="container">
+        <span class="section-kicker">Cost Reality</span>
+        <h2 class="section-title">Why Rent a $49/mo Dashboard to Fix 6 Files?</h2>
+        <p class="section-sub">
+          Compare 12-month ownership cost and concrete engineering output against typical 2026 entry-level GEO visibility subscriptions.
+        </p>
+
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Pricing</th>
+                <th>12-Month Cost</th>
+                <th>Audits AI Bots &amp; llms.txt</th>
+                <th>Generates 6 Fix Files</th>
+                <th>Local CI Gate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row">
+                <td>CiteReady Pro CLI</td>
+                <td>$19 One-Time</td>
+                <td class="cost-win">$19 total</td>
+                <td>Yes (36 checks, 10 bots)</td>
+                <td>Yes + HTML/PDF report</td>
+                <td>Yes (--dir &amp; CI)</td>
+              </tr>
+              <tr>
+                <td>Otterly.AI (Starter)</td>
+                <td>From $29 / mo</td>
+                <td class="cost-strike">$348 / yr</td>
+                <td>Prompt tracking focus</td>
+                <td>No local code export</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>Peak Answer / LLM Pulse</td>
+                <td>From $49 / mo</td>
+                <td class="cost-strike">$588 / yr</td>
+                <td>Prompt monitoring</td>
+                <td>No local fix files</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>Xicmo (Lite GEO Agent)</td>
+                <td>From $49 / mo</td>
+                <td class="cost-strike">$588 / yr</td>
+                <td>Yes (Cloud SaaS)</td>
+                <td>Cloud PR subscription</td>
+                <td>Cloud only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING DECK -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <span class="section-kicker">Simple One-Time USD Pricing</span>
+        <h2 class="section-title">Pay Once. Own the Engine Forever.</h2>
+        <p class="section-sub">
+          Zero subscriptions, zero usage meters, zero API keys. Choose whether to run the CLI locally or have us deliver your custom fix pack in 24 hours.
+        </p>
+
+        <div class="persona-bar" role="group" aria-label="Quick tier recommender">
+          <button type="button" class="persona-btn active" data-persona="pro">I write code &rarr; Highlight $19 Pro CLI</button>
+          <button type="button" class="persona-btn" data-persona="dfy">Skip the terminal &rarr; Highlight $29 Done-For-You</button>
+          <button type="button" class="persona-btn" data-persona="agency">I ship client sites &rarr; Highlight $49 Agency Pack</button>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Tier 1: Pro CLI $19 -->
+          <div class="price-card featured persona-highlight" data-tier-card="pro">
+            <div>
+              <div class="tier-head">
+                <span class="tier-name">Pro CLI &amp; Auto-Fix Kit</span>
+                <span class="popular-pill">BEST VALUE</span>
+              </div>
+              <div class="price-line">
+                <span class="price-amount">$19</span>
+                <span class="price-once">USD / one-time</span>
+              </div>
+              <p class="price-desc">For indie developers &amp; solo founders running unlimited local and CI audits across all repos.</p>
+              <ul class="feature-list">
+                <li>Zero-dependency Node 18+ CLI (<code class="inline-code">citeready-pro-v1.0.0.zip</code>)</li>
+                <li>Multi-page crawler + all 36 weighted checks</li>
+                <li>Auto-generates <code class="inline-code">llms.txt</code>, <code class="inline-code">llms-full.txt</code> &amp; <code class="inline-code">robots.txt</code></li>
+                <li>Validated JSON-LD + <code class="inline-code">&lt;head&gt;</code> meta + <code class="inline-code">nextjs-metadata.ts</code></li>
+                <li>Standalone HTML &amp; Print-PDF report (<code class="inline-code">--brand</code>)</li>
+                <li>GitHub Actions CI score gate workflow included</li>
+              </ul>
+            </div>
+            <a class="btn btn-primary btn-full" data-checkout-tier="proCli" data-tier-label="CiteReady Pro CLI & Auto-Fix Kit ($19)" href="#checkout">Buy Pro Kit &mdash; $19</a>
+          </div>
+
+          <!-- Tier 2: Done-For-You $29 -->
+          <div class="price-card" data-tier-card="dfy">
+            <div>
+              <div class="tier-head">
+                <span class="tier-name">Done-For-You Fix Pack</span>
+              </div>
+              <div class="price-line">
+                <span class="price-amount">$29</span>
+                <span class="price-once">USD / per site</span>
+              </div>
+              <p class="price-desc">Don't touch the terminal. Give us your URL and get custom, QA-verified files ready to paste in 24h.</p>
+              <ul class="feature-list">
+                <li>Full 36-check crawl of your live site (up to 25 pages)</li>
+                <li>Hand-reviewed <code class="inline-code">llms.txt</code> &amp; <code class="inline-code">llms-full.txt</code> for your product</li>
+                <li>Clean <code class="inline-code">robots.txt</code> preserving existing rules + AI search bots</li>
+                <li>Validated <code class="inline-code">Organization</code>, <code class="inline-code">Product</code> &amp; <code class="inline-code">FAQPage</code> JSON-LD</li>
+                <li>Ready-to-paste <code class="inline-code">&lt;head&gt;</code> or Next.js App Router Metadata</li>
+                <li>Executive HTML + PDF report + free post-deploy re-scan</li>
+              </ul>
+            </div>
+            <a class="btn btn-secondary btn-full" data-checkout-tier="dfyStarter" data-tier-label="Done-For-You GEO Fix Pack ($29)" href="#checkout">Order Fix Pack &mdash; $29</a>
+          </div>
+
+          <!-- Tier 3: Agency $49 -->
+          <div class="price-card" data-tier-card="agency">
+            <div>
+              <div class="tier-head">
+                <span class="tier-name">Agency Ship Pack</span>
+              </div>
+              <div class="price-line">
+                <span class="price-amount">$49</span>
+                <span class="price-once">USD / bundle</span>
+              </div>
+              <p class="price-desc">For boutique studios &amp; freelance devs bundling white-label GEO audits into client deliveries.</p>
+              <ul class="feature-list">
+                <li>Includes full <strong>CiteReady Pro CLI</strong> source &amp; lifetime local use</li>
+                <li>Includes <strong>1 Done-For-You custom fix pack</strong> for your flagship site</li>
+                <li>White-label client report rights (<code class="inline-code">--brand "Your Studio"</code>)</li>
+                <li>Next.js, Astro, Vite &amp; static HTML drop-in recipes</li>
+                <li>Priority 24h async email delivery + verification scan</li>
+              </ul>
+            </div>
+            <a class="btn btn-secondary btn-full" data-checkout-tier="agencyShip" data-tier-label="Agency Ship Pack ($49)" href="#checkout">Get Agency Pack &mdash; $49</a>
+          </div>
+        </div>
+
+        <div class="guarantee-strip">
+          <div class="guarantee-card">
+            <strong>Zero-Risk Delivery Guarantee:</strong> Instant Gumroad ZIP delivery with zero npm dependencies on Node 18+. For Done-For-You ($29) and Agency ($49), if we fail to deliver your verified fix pack within 24 hours, you get a full refund.
+          </div>
+          <div class="lite-card" id="free-lite">
+            <div>
+              <strong>Try locally first ($0):</strong> Download <strong>CiteReady Lite CLI</strong> (29.8 KB ZIP, no signup)&mdash;runs all 36 checks in your terminal.
+            </div>
+            <a class="btn btn-secondary btn-sm" href="/downloads/citeready-free-v1.0.0.zip" download>Download Free Lite (.zip)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-band" id="faq">
+      <div class="container">
+        <span class="section-kicker">Questions</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Why buy CiteReady instead of a $29-$49/month GEO tracker?</summary>
+            <p>Monthly GEO trackers monitor prompt mentions passively. CiteReady audits the actual technical blockers preventing AI engines from reading your site and generates the exact <code class="inline-code">llms.txt</code>, <code class="inline-code">robots.txt</code>, JSON-LD, and meta fix files for a one-time payment.</p>
+          </details>
+          <details>
+            <summary>Does CiteReady require API keys or external npm dependencies?</summary>
+            <p>No. CiteReady runs deterministically on Node.js 18+ with zero external runtime dependencies and zero paid LLM API keys.</p>
+          </details>
+          <details>
+            <summary>Can I audit local Next.js, Astro, or Vite static builds before deploying?</summary>
+            <p>Yes. Pass <code class="inline-code">--dir ./dist --url https://yourdomain.com --min-score 85</code> in local terminal or GitHub Actions CI to catch GEO and SEO regressions before shipping.</p>
+          </details>
+          <details>
+            <summary>How does the $29 Done-For-You Fix Pack work?</summary>
+            <p>Submit your target URL and stack at checkout. Within 24 hours you receive a full white-label HTML/PDF audit report plus custom-tuned <code class="inline-code">llms.txt</code>, <code class="inline-code">llms-full.txt</code>, <code class="inline-code">robots.txt</code>, JSON-LD, and head meta files ready to drop into your repository.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div><strong>CiteReady</strong> &middot; Zero-Dependency AI Search (GEO) &amp; Launch-Readiness Fix Engine</div>
+      <div class="footer-links">
+        <a href="/llms.txt">llms.txt</a>
+        <a href="/llms-full.txt">llms-full.txt</a>
+        <a href="/robots.txt">robots.txt</a>
+        <a href="/sitemap.xml">sitemap.xml</a>
+        <a href="/sample-report.html">Sample Report</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="modal-tier-title">
+    <div class="modal-box">
+      <h3 id="modal-tier-title">Checkout Link Setup</h3>
+      <p>
+        Configure live Gumroad or Polar checkout URLs in <code class="inline-code">site/config.js</code> to open instant USD checkout.
+      </p>
+      <p>
+        Meanwhile, test all 3 browser tools on this page or inspect the <a href="/sample-report.html">full sample audit report</a>.
+      </p>
+      <button type="button" class="btn btn-secondary btn-sm" id="modal-close">Close</button>
+    </div>
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+name: CiteReady AI Search & Launch Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  citeready-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Replace ./site with your build output directory (e.g., ./dist or ./out)
+      # and replace https://example.com with your canonical production URL.
+      - name: Run CiteReady Score Gate
+        run: |
+          node bin/citeready.mjs --dir ./site --url https://example.com --fix --out ./citeready-output --min-score 85
+
+      - name: Upload CiteReady Audit Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: citeready-audit-report
+          path: ./citeready-output/
