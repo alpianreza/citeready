@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="64" y="64" width="1072" height="502" rx="24" fill="none" stroke="#10b981" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="108" y="156" fill="#34d399" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="700" letter-spacing="3">CITEREADY — AI SEARCH &amp; LAUNCH FIX ENGINE</text>
+  <text x="108" y="254" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="58" font-weight="800">Make ChatGPT, Perplexity &amp;</text>
+  <text x="108" y="326" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="58" font-weight="800">Claude Cite Your Site.</text>
+  <text x="108" y="406" fill="#cbd5e1" font-family="system-ui, -apple-system, sans-serif" font-size="30">36-check GEO + AI Crawler + JSON-LD + Technical SEO audit &amp; auto-fix kit.</text>
+  <rect x="108" y="458" width="320" height="58" rx="12" fill="#10b981"/>
+  <text x="268" y="496" text-anchor="middle" fill="#06281e" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800">$19 One-Time &middot; No Sub</text>
+  <text x="462" y="496" fill="#94a3b8" font-family="monospace" font-size="24">llms.txt &middot; robots.txt &middot; JSON-LD &middot; CI Gate</text>
+</svg>

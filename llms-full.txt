@@ -1,0 +1,32 @@
+# CiteReady — Complete Product & Pricing Reference
+
+> Zero-dependency AI Search (GEO), llms.txt, AI crawler robots.txt, JSON-LD, and launch-readiness audit & auto-fix CLI.
+
+Canonical URL: https://citeready.eiran.tech/
+
+## Problem Solved
+Most indie SaaS sites, developer tools, and agencies accidentally block AI search engines (`OAI-SearchBot`, `PerplexityBot`, `ClaudeBot`), lack a valid `/llms.txt` (`llmstxt.org` spec), ship broken or missing JSON-LD structured data, or forget Open Graph tags before launch. Existing AI search visibility SaaS tools charge $29-$250/month for dashboards without generating production fix files.
+
+## What CiteReady Audits (36 Checks, 100 Points)
+1. **AI Search & GEO (30 pts)**: `/llms.txt` existence & `llmstxt.org` spec validity, `/llms-full.txt`, opening summary paragraph, semantic HTML landmarks (`<main>`, `<article>`), >=150 words indexable copy, extractable FAQ pairs.
+2. **AI Crawler Policy (20 pts)**: `/robots.txt`, `Sitemap:` directive, explicit allow/block status for `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `GPTBot`, and blanket disallow guard.
+3. **Structured Data / JSON-LD (15 pts)**: JSON-LD presence, `JSON.parse` validity, `schema.org` context, `Organization`/`Person`, `WebSite`/`SoftwareApplication`/`Product`, and `FAQPage`.
+4. **Technical SEO (15 pts)**: `<title>`, `<meta name="description">`, single `<h1>` + heading order, canonical link, `<html lang>`, `/sitemap.xml`, `noindex` guard.
+5. **Social & Open Graph (10 pts)**: `og:title`, `og:description`, `og:image` + HTTP 200 reachability, `og:url`, `og:type`, Twitter Card metadata.
+6. **Quality & Signals (10 pts)**: HTTPS canonical origin, viewport meta, favicon, image `alt` coverage >=90%, lean HTML (<250KB) & delivery signals.
+
+## Output Files Generated (`--fix`)
+- `llms.txt` (llmstxt.org compliant)
+- `llms-full.txt` (multi-page Markdown context)
+- `robots.txt` (explicit AI search bot rules)
+- `jsonld-snippets.html` (Organization, WebSite, SoftwareApplication, FAQPage)
+- `head-meta-patch.html` (SEO, Canonical, Open Graph, Twitter Card)
+- `nextjs-metadata.ts` (Next.js App Router Metadata export)
+- `citeready-report.html` (white-label print-to-PDF audit report)
+- `citeready-report.json` (CI/automation JSON output)
+
+## One-Time Pricing (No Subscriptions)
+- **Free Lite CLI ($0)**: 36-check single-page audit in terminal or JSON (`--lite`).
+- **Pro CLI & Auto-Fix Kit ($19 one-time)**: Full multi-page crawler, all 6 auto-fix file generators, white-label HTML/PDF report (`--brand`), and GitHub Actions CI gate (`--min-score`).
+- **Done-For-You GEO Fix Pack ($29 one-time)**: We run the full audit on your URL and deliver custom-tuned `llms.txt`, `llms-full.txt`, `robots.txt`, JSON-LD, `<head>` meta patch, and HTML/PDF report within 24 hours.
+- **Agency Ship Pack ($49 one-time)**: Everything in Pro CLI + Done-For-You setup for your flagship site + white-label client reporting license + Next.js/Astro integration snippets.
